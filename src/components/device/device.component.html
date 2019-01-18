@@ -1,0 +1,36 @@
+<ion-toolbar>
+    <ion-title center>Add Device</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="closeModal()">
+            <ion-icon name="close"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-toolbar>
+<div>
+        <ion-item>
+            <ion-label stacked>Device Name<span class="requiredFields">*</span></ion-label>
+            <ion-input type="text" [(ngModel)]="device.deviceName" name="DeviceName"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Maker</ion-label>
+            <ion-input [(ngModel)]="device.deviceMake" name="Make"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Model</ion-label>
+            <ion-input [(ngModel)]="device.deviceModel" name="Model"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Serial Number<span class="requiredFields">*</span></ion-label>
+            <ion-input [(ngModel)]="device.deviceSN" name="Serial"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Active</ion-label>
+            <ion-checkbox color="dark" checked="{{device.isActive}}"></ion-checkbox>
+        </ion-item>
+</div>
+<ion-footer>
+    <ion-buttons>
+        <button ion-button left color="danger" (click)="resetUI()">Clear</button>
+        <button ion-button right color="secondary" (click)="saveNewDevice()" [disabled]="(device.deviceName?.length<5 || device.deviceSN?.length<3)" >Save</button>
+    </ion-buttons>
+</ion-footer>
