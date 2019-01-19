@@ -1,3 +1,18 @@
 page-home {
 
+    ion-grid{
+        .device-list-header{
+            border: thin solid lightgray;
+            font-weight: bold;
+            font-size: 1.5rem;
+            background-color: lightgray;
+        }
+        .device-list-rows{
+            border: thin solid lightgray;
+        }
+        ion-col{
+            padding-left:0!important;
+            padding-right:0!important;
+        }
+    }
 }

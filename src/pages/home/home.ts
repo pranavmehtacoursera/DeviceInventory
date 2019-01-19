@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { DeviceComponent } from '../../components/device/device.component';
 import { DeviceService } from '../../services/device.service';
+import { TransactionComponent } from '../../components/transaction/transaction.component';
+import { TransactionType } from '../../model/transaction.class';
+import { Device } from '../../model/device.model';
 
 @Component({
   selector: 'page-home',
@@ -15,8 +18,18 @@ export class HomePage {
 
   }
 
+  ngOnInit(){
+    this.deviceService.getDevices();
+  }
+
   addNewDevice(){
     let newDevice = this.modalCtrl.create(DeviceComponent);
+    newDevice.present();
+  }
+
+  tansaction(device:Device){
+
+    let newDevice = this.modalCtrl.create(TransactionComponent,{deviceObj:device});
     newDevice.present();
   }
 

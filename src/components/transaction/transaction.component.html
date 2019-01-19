@@ -1,0 +1,32 @@
+<ion-toolbar>
+    <ion-title center>Borrow Device</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="closeModal()">
+            <ion-icon name="close"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-toolbar>
+<div>
+    <ion-item>
+        <ion-label>Device</ion-label>
+        <ion-input readonly type="text" [(ngModel)]="trans.trans_deviceName" name="DeviceName"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Check-In</ion-label>
+        <ion-input readonly type="text" [(ngModel)]="trans.trans_date" name="Check-in"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>Borrower Name<span class="requiredFields">*</span></ion-label>
+        <ion-input type="text" [(ngModel)]="trans.trans_borrower" name="Borrower"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>witness<span class="requiredFields">*</span></ion-label>
+        <ion-input [(ngModel)]="trans.trans_witness" name="wittness"></ion-input>
+    </ion-item>
+</div>
+<ion-footer>
+    <ion-buttons>
+        <button ion-button left color="danger" (click)="resetUI()">Clear</button>
+        <button ion-button right color="secondary" (click)="saveNewDevice()" [disabled]="(trans.trans_borrower?.length<2 || trans.trans_witness?.length<2)">Save</button>
+    </ion-buttons>
+</ion-footer>
