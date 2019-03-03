@@ -1,34 +1,108 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
+  <ion-navbar color="primary">
+    <!-- <button ion-button menuToggle start>
       <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Device Inventory</ion-title>
+    </button> -->
+    <ion-title float-left>Device Inventory</ion-title>
+    <ion-buttons>
+      <button ion-button float-right icon-start>
+        <ion-icon name="list-box"></ion-icon>Report
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <button ion-button (click)="addNewDevice()" color="secondary">Add Device</button>
-  <hr/>
-  <ion-grid>
-    <ion-row>
-      <ion-col>Device Name</ion-col>
-      <ion-col>Serial No</ion-col>
-      <ion-col>Borrowed Date</ion-col>
-      <ion-col>Borrowed By</ion-col>
-      <ion-col>Borrowed By</ion-col>
-      <ion-col>&nbsp;</ion-col>
+  <ion-fab top right>
+    <button ion-fab mini (click)="addNewDevice()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+  <div class="main-container">
+  <ion-card *ngFor="let device of deviceService.devices">
+    <img src="/assets/imgs/device_image.png" />
+    <ion-list>
+      <ion-item>
+        <ion-label>
+          Device:
+        </ion-label>
+        <div item-content>
+          {{device.deviceName}}
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Serial:
+        </ion-label>
+        <div item-content>
+          {{device.deviceSN}}
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Issue Date:
+        </ion-label>
+        <div item-content>
+          {{device.lastBorrowedDate}}
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Issue To:
+        </ion-label>
+        <div item-content>
+          {{device.lastBorrowedBy}}
+        </div>
+      </ion-item>
+      <ion-item>
+          <ion-label>
+            Available:
+          </ion-label>
+          <div item-content>
+            {{device.isAvailable ? 'Yes' : 'No'}}
+          </div>
+        </ion-item>
+      <ion-item>
+        <ion-label>
+          Active:
+        </ion-label>
+        <div item-content>
+          {{device.isActive ? 'Yes' : 'No'}}
+        </div>
+      </ion-item>
+      <ion-item>
+          <button float-left round="true" ion-button col-5 color="light">
+              Edit
+            </button>
+          <button float-right round="true" ion-button col-5 color="light" (click)="tansaction(device)">{{device.isAvailable ? 'Checkout' : 'Checkin'}}</button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</div>
+  <!-- <button ion-button (click)="addNewDevice()" float-right>
+    Add Device
+  </button> -->
+  <!-- <ion-grid class="device-list" padding>
+    <ion-row class="device-list-header" no-padding>
+      <ion-col col-2>Device Name</ion-col>
+      <ion-col col-2>Serial No</ion-col>
+      <ion-col col-2>Borrowed Date</ion-col>
+      <ion-col col-2>Borrowed By</ion-col>
+      <ion-col col-2>Active</ion-col>
+      <ion-col col-2>&nbsp;</ion-col>
     </ion-row>
-    <ion-row *ngFor="let device of deviceService.getDevices">
-      <ion-col>{{device.deviceName}}</ion-col>
-      <ion-col>{{device.deviceSN}}</ion-col>
-      <ion-col>{{device.deviceName}}</ion-col>
-      <ion-col>{{device.lastBorrowedDate}}</ion-col>
-      <ion-col>{{device.lastBorrowedBy}}</ion-col>
-      <ion-col>
-        <button ion-button icon-only><ion-icon name="edit"></ion-icon></button>
-        <button ion-button icon-only><ion-icon name="close" color="danger"></ion-icon></button>
+    <ion-row *ngFor="let device of deviceService.devices" class="device-list-rows">
+      <ion-col col-2>{{device.deviceName}}</ion-col>
+      <ion-col col-2>{{device.deviceSN}}</ion-col>
+      <ion-col col-2>{{device.lastBorrowedDate}}</ion-col>
+      <ion-col col-2>{{device.lastBorrowedBy}}</ion-col>
+      <ion-col col-2>{{device.isActive ? 'Yes' : 'No'}}</ion-col>
+      <ion-col col-2>
+        <button ion-button icon-only color="default">
+          <ion-icon name="create"></ion-icon>
+        </button>
+        <button ion-button color="default" (click)="tansaction(device)">{{device.isAvailable ? 'Checkout' : 'Checkin'}}</button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>

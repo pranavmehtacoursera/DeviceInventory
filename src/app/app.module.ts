@@ -13,31 +13,41 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { DeviceComponent } from '../components/device/device.component';
 import { DataService } from '../services/data.service';
 import { DeviceService } from '../services/device.service';
+import { UIService } from '../services/ui.service';
+import { TransactionComponent } from '../components/transaction/transaction.component';
+import { TransactionService } from '../services/transaction.service';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    DeviceComponent
+    DeviceComponent,
+    TransactionComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot({
+      name: '__pmdevicedb',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     ListPage,
-    DeviceComponent
+    DeviceComponent,
+    TransactionComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
     DeviceService,
     DataService,
+    UIService,
+    TransactionService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
