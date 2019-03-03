@@ -4,6 +4,7 @@ import { Device } from '../model/device.model';
 import { Observable } from 'rxjs/Observable';
 import { Transaction } from '../model/transaction.class';
 
+
 @Injectable()
 export class DataService{
 
@@ -11,9 +12,9 @@ export class DataService{
 
     }
 
-     saveDevicesList = (devices:Array<Device>):Observable<any> =>{
+     saveDevicesList = (devicesList:Array<Device>):Observable<any> =>{
          return new Observable(observer =>{
-            this.storage.set("devicesList",JSON.stringify(devices)).then(()=>{
+            this.storage.set("devicesList",JSON.stringify(devicesList)).then(()=>{
                 observer.next(true);
             }).catch((err)=>{
                 console.log(`Error : ${err}`);
@@ -25,6 +26,23 @@ export class DataService{
         
     }
 
+    updateDevice = (device:Device):Observable<boolean>=>{
+        return new Observable(observer =>{
+            this.storage.get("devicesList").then(data=>{
+                let devicesList = JSON.parse(data);
+                if(devicesList){
+                    let deviceIndex = devicesList.findIndex(item=> item.deviceId === device.deviceId);
+                    if(deviceIndex > -1){
+                        devicesList[deviceIndex] = device;
+                    }
+                }
+                observer.next(true);
+                observer.complete();
+            }).catch(err=>{
+                observer.error(err);
+            });
+        });
+    }
     saveTransactions = (transactions:Array<Transaction>):Observable<any> =>{
         return new Observable(observer =>{
            this.storage.set("tansations",JSON.stringify(transactions)).then(()=>{
@@ -40,23 +58,23 @@ export class DataService{
    }
 
     getDevicesList = ():Observable<Array<Device>>=>{
-        return new Observable(obsrver =>{
+        return new Observable(observer =>{
             this.storage.get("devicesList").then(data=>{
-                obsrver.next(JSON.parse(data));
-                obsrver.complete();
+                observer.next(JSON.parse(data));
+                observer.complete();
             }).catch(err=>{
-                obsrver.error(err);
+                observer.error(err);
             });
         });
     }
 
     getTransactions = ():Observable<Array<Transaction>>=>{
-        return new Observable(obsrver =>{
+        return new Observable(observer =>{
             this.storage.get("transactions").then(data=>{
-                obsrver.next(JSON.parse(data));
-                obsrver.complete();
+                observer.next(JSON.parse(data));
+                observer.complete();
             }).catch(err=>{
-                obsrver.error(err);
+                observer.error(err);
             });
         });
     }

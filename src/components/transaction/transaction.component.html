@@ -27,6 +27,6 @@
 <ion-footer>
     <ion-buttons>
         <button ion-button left color="danger" (click)="resetUI()">Clear</button>
-        <button ion-button right color="secondary" (click)="saveNewDevice()" [disabled]="(trans.trans_borrower?.length<2 || trans.trans_witness?.length<2)">Save</button>
+        <button ion-button right color="secondary" (click)="saveTransaction()" [disabled]="(trans.trans_borrower?.length<2 || trans.trans_witness?.length<2)">Save</button>
     </ion-buttons>
 </ion-footer>

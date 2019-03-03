@@ -3,7 +3,6 @@ import { NavController, ModalController } from 'ionic-angular';
 import { DeviceComponent } from '../../components/device/device.component';
 import { DeviceService } from '../../services/device.service';
 import { TransactionComponent } from '../../components/transaction/transaction.component';
-import { TransactionType } from '../../model/transaction.class';
 import { Device } from '../../model/device.model';
 
 @Component({
@@ -23,8 +22,9 @@ export class HomePage {
   }
 
   addNewDevice(){
-    let newDevice = this.modalCtrl.create(DeviceComponent);
-    newDevice.present();
+    // let newDevice = this.modalCtrl.create(DeviceComponent);
+    // newDevice.present();
+    this.navCtrl.push(DeviceComponent);
   }
 
   tansaction(device:Device){

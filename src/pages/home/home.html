@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <!-- <button ion-button menuToggle start>
       <ion-icon name="menu"></ion-icon>
     </button> -->
@@ -13,10 +13,76 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button (click)="addNewDevice()" float-right>
+  <ion-fab top right>
+    <button ion-fab mini (click)="addNewDevice()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+  <div class="main-container">
+  <ion-card *ngFor="let device of deviceService.devices">
+    <img src="/assets/imgs/device_image.png" />
+    <ion-list>
+      <ion-item>
+        <ion-label>
+          Device:
+        </ion-label>
+        <div item-content>
+          {{device.deviceName}}
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Serial:
+        </ion-label>
+        <div item-content>
+          {{device.deviceSN}}
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Issue Date:
+        </ion-label>
+        <div item-content>
+          {{device.lastBorrowedDate}}
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Issue To:
+        </ion-label>
+        <div item-content>
+          {{device.lastBorrowedBy}}
+        </div>
+      </ion-item>
+      <ion-item>
+          <ion-label>
+            Available:
+          </ion-label>
+          <div item-content>
+            {{device.isAvailable ? 'Yes' : 'No'}}
+          </div>
+        </ion-item>
+      <ion-item>
+        <ion-label>
+          Active:
+        </ion-label>
+        <div item-content>
+          {{device.isActive ? 'Yes' : 'No'}}
+        </div>
+      </ion-item>
+      <ion-item>
+          <button float-left round="true" ion-button col-5 color="light">
+              Edit
+            </button>
+          <button float-right round="true" ion-button col-5 color="light" (click)="tansaction(device)">{{device.isAvailable ? 'Checkout' : 'Checkin'}}</button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</div>
+  <!-- <button ion-button (click)="addNewDevice()" float-right>
     Add Device
-  </button>
-  <ion-grid class="device-list" padding>
+  </button> -->
+  <!-- <ion-grid class="device-list" padding>
     <ion-row class="device-list-header" no-padding>
       <ion-col col-2>Device Name</ion-col>
       <ion-col col-2>Serial No</ion-col>
@@ -38,5 +104,5 @@
         <button ion-button color="default" (click)="tansaction(device)">{{device.isAvailable ? 'Checkout' : 'Checkin'}}</button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>

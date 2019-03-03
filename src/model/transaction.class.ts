@@ -4,7 +4,7 @@ export enum TransactionType{
 export class Transaction{
     public trans_type:TransactionType;
     public trans_date:string;
-    public trans_deviceId:string;
+    public trans_deviceId:number;
     public trans_deviceName:string;
     public trans_borrower:string;
     public trans_witness:string;

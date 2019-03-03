@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Device } from '../../model/device.model';
-import { ViewController } from 'ionic-angular';
+import { ViewController, NavController } from 'ionic-angular';
 import { DeviceService } from '../../services/device.service';
 import { UIService } from '../../services/ui.service';
 
@@ -22,7 +22,8 @@ export class DeviceComponent{
     };
 
     constructor(
-        private viewCtrl:ViewController, 
+        private viewCtrl:ViewController,
+        private navCtrl:NavController,
         private deviceService:DeviceService,
         private uiService:UIService){
         
@@ -39,7 +40,12 @@ export class DeviceComponent{
         this.resetUI();
     }
     closeModal(){
-        this.viewCtrl.dismiss();
+        // this.viewCtrl.dismiss();
+        this.navCtrl.pop();
+    }
+
+    setDeviceName(){
+        this.device.deviceName = `${this.device.deviceMake} ${this.device.deviceModel}`;
     }
     resetUI(){
         this.device = {

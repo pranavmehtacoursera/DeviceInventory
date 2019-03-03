@@ -1,18 +1,34 @@
 page-home {
-
-    ion-grid{
-        .device-list-header{
-            border: thin solid lightgray;
+    ion-content{
+        background-color: #E8EAF6!important;
+    }
+    ion-card{
+        max-width: 300px;
+        img{
+            width:300px;
+        }
+        ion-label{
             font-weight: bold;
-            font-size: 1.5rem;
-            background-color: lightgray;
-        }
-        .device-list-rows{
-            border: thin solid lightgray;
-        }
-        ion-col{
-            padding-left:0!important;
-            padding-right:0!important;
         }
     }
+    
+    .main-container{
+        display: inline-flex;
+        flex-flow: wrap;
+    }
+    // ion-grid{
+    //     .device-list-header{
+    //         border: thin solid lightgray;
+    //         font-weight: bold;
+    //         font-size: 1.5rem;
+    //         background-color: lightgray;
+    //     }
+    //     .device-list-rows{
+    //         border: thin solid lightgray;
+    //     }
+    //     ion-col{
+    //         padding-left:0!important;
+    //         padding-right:0!important;
+    //     }
+    // }
 }
